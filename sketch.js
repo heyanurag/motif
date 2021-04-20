@@ -7,7 +7,9 @@ function setup() {
 
   PALETTE = [
     color(255, 52, 154), //pink
-    color(4, 0, 152)  //blue
+    color(4, 0, 152),  //blue
+    'limegreen',
+    'teal'
   ]
 
   noLoop()
@@ -21,6 +23,17 @@ function draw() {
 }
 
 function testLines() {
+  const randomSides = random(1)
+  const randomColor = floor(random(0, PALETTE.length))
+  let strokeColor = PALETTE[randomColor]
+  let numShapes
+
+  if(randomSides > 0.5) {
+    numShapes = SIDES
+  } else {
+    numShapes = SIDES * 2
+  }
+
   noFill()
   stroke(PALETTE[0])
 
@@ -29,11 +42,11 @@ function testLines() {
 
     ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
     
-    stroke(PALETTE[1])
+    stroke(strokeColor)
 
-    const angle = 360/SIDES
+    const angle = 360/numShapes
 
-    for(let i=0; i<SIDES; i++) {
+    for(let i = 0; i < numShapes; i++) {
       line(0, 0, CRYSTAL_SIZE/2, 0)
       rotate(angle)
     }
